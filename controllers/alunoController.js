@@ -1,3 +1,5 @@
+import { Aluno } from '../models/Aluno.js';
+
 let listaAlunos = JSON.parse(localStorage.getItem('listaAlunos')) || [];
 
 function cadastrarAluno() {
@@ -10,12 +12,13 @@ function cadastrarAluno() {
         return;
     }
 
-    const aluno = {
-        nome: nomeAluno.value,
-        idade: idadeAluno.value,
-        curso: cursoAluno.value,
-        notaFinal: notaFinalAluno.value
-    }
+    const aluno = new Aluno(
+        nomeAluno.value,
+        idadeAluno.value,
+        cursoAluno.value,
+        notaFinalAluno.value
+    )
+
     listaAlunos.push(aluno);
     localStorage.setItem('listaAlunos', JSON.stringify(listaAlunos));
     alert('Aluno cadastrado com sucesso!');
@@ -44,5 +47,5 @@ function listarAlunos() {
         lista.appendChild(row);
     });
 }
-
+window.cadastrarAluno = cadastrarAluno;
 document.addEventListener('DOMContentLoaded', listarAlunos);
