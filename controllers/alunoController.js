@@ -51,21 +51,26 @@ function editarAluno(indice) {
         return;
     }
 
-    listaAlunos[indice] = new Aluno(
+    const alunoEditado = new Aluno(
         nome.trim(),
         idade.trim(),
         curso.trim(),
         notaFinal.trim()
     );
+    listaAlunos = listaAlunos.map((alunoAtual, indiceAtual) =>
+        indiceAtual === indice ? alunoEditado : alunoAtual
+    );
     localStorage.setItem('listaAlunos', JSON.stringify(listaAlunos));
+    alert('Aluno editado com sucesso!');
     listarAlunos();
 }
 
 function excluirAluno(indice) {
     if (!confirm(`Deseja excluir o aluno ${listaAlunos[indice].nome}?`)) return;
 
-    listaAlunos.splice(indice, 1);
+    listaAlunos = listaAlunos.filter((aluno, indiceAtual) => indiceAtual !== indice);
     localStorage.setItem('listaAlunos', JSON.stringify(listaAlunos));
+    alert('Aluno excluído com sucesso!');
     listarAlunos();
 }
 
@@ -88,13 +93,17 @@ function listarAlunos() {
         botaoEditar.type = 'button';
         botaoEditar.className = 'btn btn-warning btn-sm me-2';
         botaoEditar.textContent = 'Editar';
-        botaoEditar.addEventListener('click', () => editarAluno(indice));
+        botaoEditar.addEventListener('click', function () {
+            editarAluno(indice);
+        });
 
         const botaoExcluir = document.createElement('button');
         botaoExcluir.type = 'button';
         botaoExcluir.className = 'btn btn-danger btn-sm';
         botaoExcluir.textContent = 'Excluir';
-        botaoExcluir.addEventListener('click', () => excluirAluno(indice));
+        botaoExcluir.addEventListener('click', function () {
+            excluirAluno(indice);
+        });
 
         acoes.appendChild(botaoEditar);
         acoes.appendChild(botaoExcluir);
@@ -102,5 +111,14 @@ function listarAlunos() {
         lista.appendChild(row);
     });
 }
-window.cadastrarAluno = cadastrarAluno;
-document.addEventListener('DOMContentLoaded', listarAlunos);
+document.addEventListener('DOMContentLoaded', function () {
+    const botaoCadastrar = document.getElementById('cadastrar-aluno');
+
+    if (botaoCadastrar) {
+        botaoCadastrar.addEventListener('click', function () {
+            cadastrarAluno();
+        });
+    }
+
+    listarAlunos();
+});
