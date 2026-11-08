@@ -1,16 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevTech Academy</title>
+    <title>Relatórios | DevTech Academy</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">
 </head>
 <body>
     <div id="header-container"></div>
 
-    <main class="container">
-        <h3>Relatórios</h3>
+    <main class="container py-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <h1 class="h3 mb-0">Relatórios dos alunos</h1>
+            <button type="button" class="btn btn-primary" id="atualizar-relatorios">Atualizar relatórios</button>
+        </div>
+
+        <div aria-live="polite">
+            <p id="relatorios-vazio" class="alert alert-info" hidden>Cadastre alunos para visualizar os relatórios.</p>
+
+            <div class="row g-4 mb-4">
+                <section class="col-md-6" aria-labelledby="titulo-media-notas">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h5" id="titulo-media-notas">Média das notas finais</h2>
+                            <p class="fs-3 mb-0" id="media-notas">—</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-6" aria-labelledby="titulo-media-idades">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h5" id="titulo-media-idades">Média das idades (anos)</h2>
+                            <p class="fs-3 mb-0" id="media-idades">—</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="card mb-4" aria-labelledby="titulo-aprovados">
+                <div class="card-body">
+                    <h2 class="h5" id="titulo-aprovados">Alunos aprovados</h2>
+                    <p class="text-muted">Alunos com nota final maior ou igual a 7.</p>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Idade</th>
+                                    <th scope="col">Curso</th>
+                                    <th scope="col">Nota final</th>
+                                </tr>
+                            </thead>
+                            <tbody id="aprovados-lista"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row g-4">
+                <section class="col-md-6" aria-labelledby="titulo-nomes">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h5" id="titulo-nomes">Nomes em ordem alfabética</h2>
+                            <ol class="list-group list-group-numbered" id="nomes-lista"></ol>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-6" aria-labelledby="titulo-cursos">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h5" id="titulo-cursos">Quantidade de alunos por curso</h2>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Curso</th>
+                                            <th scope="col">Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cursos-lista"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -20,6 +95,6 @@
                 document.getElementById('header-container').innerHTML = data;
             });
     </script>
-<script type="module" src="../controllers/alunoController.js"></script>
+    <script type="module" src="../controllers/relatorioController.js"></script>
 </body>
 </html>

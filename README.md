@@ -10,6 +10,18 @@ Aplicação de cadastro, listagem, edição e exclusão de alunos com HTML e Jav
 - A listagem usa `forEach()` com arrow functions para montar as linhas e colunas da tabela.
 - O sistema exibe mensagens com `alert()` após cadastrar, editar e excluir um aluno. A exclusão mantém a confirmação com `confirm()`.
 
+## Exercício 4: Relatórios com métodos de array
+
+A página `public/relatorios.html` mostra os relatórios calculados em `controllers/relatorioController.js`:
+
+- `filter()` lista os alunos aprovados, com nota final maior ou igual a 7.
+- `reduce()` calcula as médias das notas e das idades, convertendo os valores salvos em números.
+- `map()` extrai os nomes e `sort()` os coloca em ordem alfabética em português.
+- `reduce()` também conta a quantidade de alunos por curso.
+- `forEach()` exibe os resultados nas listas e tabelas da página.
+
+Os relatórios são calculados ao abrir a página, ao clicar em **Atualizar relatórios** e ao alterar os cadastros em outra aba. Quando não há alunos, a página mostra mensagens de lista vazia e não calcula médias.
+
 ## Executar com Docker
 
 Na pasta do projeto, execute:
