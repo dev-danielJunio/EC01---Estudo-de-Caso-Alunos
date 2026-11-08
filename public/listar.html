@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTech Academy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main class="container">
+        <h3>Formulário de Cadastro</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Curso</th>
+                    <th>Nota Final</th>
+                </tr>
+            </thead>
+            <tbody id="alunos-lista">
+                <!-- Os alunos cadastrados serão exibidos aqui -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    </script>
+    <script src="../controllers/alunoController.js"></script>
+</body>
+</html>
